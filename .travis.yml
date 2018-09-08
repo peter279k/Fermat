@@ -3,16 +3,21 @@ php:
   - 7.0
   - 7.1
   - 7.2
+  - nightly
+
+matrix:
+  allow_failures:
+    - php: nightly
 
 install:
-  - composer update
+  - composer install
 
 before_script:
   - mkdir build
   - mkdir build/logs
 
 script:
-  - phpunit --coverage-text ./tests/Samsara
+  - phpunit --coverage-text
 
 after_success:
   - wget https://scrutinizer-ci.com/ocular.phar
